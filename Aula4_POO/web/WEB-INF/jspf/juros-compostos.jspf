@@ -1,0 +1,45 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+
+ <form method="post">
+        <label>Montante Inicial:</label>
+        <input type="text" name="montanteComposto" required><br><br>
+
+        <label>Taxa de Juros (% ao mês):</label>
+        <input type="text" name="taxaComposto" required><br><br>
+
+        <label>Quantidade de Meses:</label>
+        <input type="number" name="mesesComposto" required><br><br>
+
+        <input type="submit" value="Calcular">
+</form>
+
+
+<%-- Processamento do cálculo --%>
+
+<%  
+        double resultadoComposto = 0;
+        String montanteStrComposto = request.getParameter("montanteComposto");
+        String taxaStrComposto = request.getParameter("taxaComposto");
+        String mesesStrComposto = request.getParameter("mesesComposto");
+        
+            if (montanteStrComposto != null && taxaStrComposto != null && mesesStrComposto != null &&
+                !montanteStrComposto.trim().isEmpty() && !taxaStrComposto.trim().isEmpty() && !mesesStrComposto.trim().isEmpty()){
+
+                try{
+                    float montanteComposto = Float.parseFloat(montanteStrComposto);
+                    float taxaComposto = Float.parseFloat(taxaStrComposto) / 100;
+                    int mesesComposto = Integer.parseInt(mesesStrComposto);
+                    resultadoComposto =  montanteComposto * Math.pow((1 + taxaComposto), mesesComposto);
+                }
+                catch(NumberFormatException e){
+                    out.println("<p style='color:red;'>Erro: Certifique-se de inserir números válidos.</p>");
+                }
+
+            }
+
+%>
+
+<h3>Resultado:</h3>
+<p>Valor Futuro: <%= resultadoComposto %></p>
+
