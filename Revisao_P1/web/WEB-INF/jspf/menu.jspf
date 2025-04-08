@@ -1,0 +1,19 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+
+<style>
+    div {
+        display: flex;
+        justify-content: space-around;
+    }  
+    
+</style>
+
+
+<div>
+<a href="index.jsp">Índice</a>
+<a href="numero-primo.jsp">Verificador de números primos</a>
+<a href="fibonacci.jsp">Visualizador da Sequência de Fibonacci</a>
+<a href="soma.jsp">Somatória de números até o limite do escolhido</a>
+</div>
+<hr>
